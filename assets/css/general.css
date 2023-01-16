@@ -1,0 +1,92 @@
+@font-face {
+  font-family: "Uneexal";
+  src: url("../fonts/UNEEXAL.ttf");
+}
+@font-face {
+  font-family: "Josefin Sans Bold";
+  src: url("../fonts/JosefinSans-Bold.ttf");
+}
+@font-face {
+  font-family: "Josefin Sans Light";
+  src: url("../fonts/JosefinSans-Light.ttf");
+}
+@font-face {
+  font-family: "Josefin Sans Thin";
+  src: url("../fonts/JosefinSans-Thin.ttf");
+}
+@font-face {
+  font-family: "Montserrat Bold";
+  src: url("../fonts/Montserrat-Bold.otf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #fff;
+  height: 100%;
+  overflow: hidden;
+}
+
+img {
+  display: block;
+}
+
+a {
+  display: block;
+}
+
+button {
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+ul, li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hor-line {
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  opacity: 0.4;
+  -webkit-backface-visibility: hidden;
+}
+
+.vert-line {
+  width: 1px;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0.4;
+  -webkit-backface-visibility: hidden;
+}
+
+.bot-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.top-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.right-line {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.left-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
