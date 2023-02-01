@@ -642,7 +642,13 @@ function getActiveServicesTabContent(){
 }
 
 function getActiveServicesTabItem(){
-  return servicesPageTabButtons.find(tab => tab.dataset.servicetabid === activeServicesTab)
+  let tabs;
+  if(window.innerWidth < 1024){
+    tabs = servicesPageTabButtons.slice(6)
+  } else {
+    tabs = servicesPageTabButtons
+  }
+  return tabs.find(tab => tab.dataset.servicetabid === activeServicesTab)
 }
 
 function getActiveServicesTabTitle(){
@@ -699,6 +705,7 @@ function getActiveServicesTabTitle(){
   }
   function webDebClose(){
     const items = [...document.querySelectorAll(".services-page__content-item")];
+    const mobLine = document.querySelector(".web-developing__mob-line");
 
     items.forEach((item, id) => {
       if(id % 2 === 0){
@@ -715,6 +722,13 @@ function getActiveServicesTabTitle(){
         })
       }
     })
+    if(mobLine){
+      gsap.to(mobLine, {
+        yPercent: 100,
+        duration: 1,
+        clearProps: true
+      })
+    }
   }
   function mobAppOpen(){
     const mobAppPage = document.querySelector(".mobile-apps");
@@ -1126,31 +1140,74 @@ const aboutSecondCoverAnimation = gsap.timeline({
   duration: 0.4
 });
 
-aboutSecondCoverAnimation.addLabel("openSecondCover");
-aboutSecondCoverAnimation.to(aboutPageCover2, {
-  xPercent: 200,
-}, "openSecondCover")
 
-gsap.to(aboutPageContacts, {
-  scrollTrigger: {
-    scroller: aboutPage,
-    trigger: aboutPageTitleBottom,
-    start: "top 40%",
-    toggleActions: "play none none reverse"
-  },
-  autoAlpha: 1,
-  duration: 0.2
-})
+if(window.innerWidth > 1023){
+  aboutSecondCoverAnimation.addLabel("openSecondCover");
+  aboutSecondCoverAnimation.to(aboutPageCover2, {
+    xPercent: 200,
+  }, "openSecondCover")
 
-gsap.to(aboutPageContacts, {
-  scrollTrigger: {
-    scroller: aboutPage,
-    trigger: aboutPageTitleBottom,
-    start: "top 13%",
-    toggleActions: "play none none reverse",
-  },
-  zIndex: 2
-})
+  gsap.to(aboutPageContacts, {
+    scrollTrigger: {
+      scroller: aboutPage,
+      trigger: aboutPageTitleBottom,
+      start: "top 40%",
+      toggleActions: "play none none reverse"
+    },
+    autoAlpha: 1,
+    duration: 0.2
+  })
+
+  gsap.to(aboutPageContacts, {
+    scrollTrigger: {
+      scroller: aboutPage,
+      trigger: aboutPageTitleBottom,
+      start: "top 13%",
+      toggleActions: "play none none reverse",
+    },
+    zIndex: 2
+  })  
+} else {
+  aboutSecondCoverAnimation.addLabel("openSecondCover");
+  aboutSecondCoverAnimation.to(aboutPageCover2, {
+    xPercent: 100,
+    duration: 0.1
+  }, "openSecondCover")
+
+  aboutSecondCoverAnimation.addLabel("expandSecondCover", ">openSecondCover");
+  aboutSecondCoverAnimation.to(aboutPageCover2, {
+    transformOrigin: "top center",
+    scaleY: 5,
+    duration: 0.15
+  }, "expandSecondCover")
+
+  aboutSecondCoverAnimation.addLabel("shrinkSecondCover", ">expandSecondCover");
+  aboutSecondCoverAnimation.to(aboutPageCover2, {
+    yPercent: 500,
+    duration: 0.1
+  }, "shrinkSecondCover")
+
+  gsap.to(aboutPageContacts, {
+    scrollTrigger: {
+      scroller: aboutPage,
+      trigger: aboutPageTitleBottom,
+      start: "top 20%",
+      toggleActions: "play none none reverse"
+    },
+    autoAlpha: 1,
+    duration: 0.2
+  })
+
+  gsap.to(aboutPageContacts, {
+    scrollTrigger: {
+      scroller: aboutPage,
+      trigger: aboutPageTitleBottom,
+      start: "top 11%",
+      toggleActions: "play none none reverse",
+    },
+    zIndex: 2
+  })
+}
 
 
 // CONCEPTS SLIDER
